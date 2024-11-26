@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol, UISearchBarDelegate {
+final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol {
     var output: ToDoListOutputProtocol?
     
     private var tasks: [Task] = []
@@ -24,6 +24,10 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol,
     override func viewDidLoad() {
         super.viewDidLoad()
         output?.viewDidLoad()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func setupUI() {
@@ -59,7 +63,7 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol,
         searchBar.searchBarStyle = .minimal
         searchBar.tintColor = .yellow
         
-        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+        if let textField = searchBar.value(forKey: K.searchField) as? UITextField {
             textField.attributedPlaceholder = NSAttributedString(
                 string: K.search,
                 attributes: [.foregroundColor: UIColor.gray]
@@ -136,14 +140,15 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol,
     }
     
     private func setupButtonInsideFooter() {
-        buttonIndiseFooter.setImage(UIImage(systemName: K.buttonIconForFooter), for: .normal)
+        buttonIndiseFooter.setImage(UIImage(systemName: K.buttonIconForFooter,
+        withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         buttonIndiseFooter.tintColor = .yellow
-        buttonIndiseFooter.contentMode = .center
+        
         footerView.addSubview(buttonIndiseFooter)
         buttonIndiseFooter.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             buttonIndiseFooter.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            buttonIndiseFooter.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -10)
+            buttonIndiseFooter.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -25)
         ])
     }
     
@@ -176,8 +181,40 @@ extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.taskCell, for: indexPath) as! TaskTableViewCell
         let task = isSearchActive ? filteredTasks[indexPath.row] : tasks[indexPath.row]
         cell.configure(with: task)
+        cell.delegate = self
         return cell
     }
 }
+
+extension ToDoListViewController: TaskTableViewCellDelegate {
+    func didToggleTaskCompletion(at cell: TaskTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        if isSearchActive {
+            let originalIndex = tasks.firstIndex { $0.id == filteredTasks[indexPath.row].id }
+            guard let originalIndex = originalIndex else { return }
+            tasks[originalIndex].completed.toggle()
+            filteredTasks[indexPath.row].completed.toggle()
+        } else {
+            tasks[indexPath.row].completed.toggle()
+        }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+}
+
+extension ToDoListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            isSearchActive = false
+            filteredTasks = tasks
+        } else {
+            isSearchActive = true
+            filteredTasks = tasks.filter { $0.todo.lowercased().contains(searchText.lowercased()) }
+        }
+        tableView.reloadData()
+    }
+}
+
+
 
 

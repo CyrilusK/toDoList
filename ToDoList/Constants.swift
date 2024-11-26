@@ -23,6 +23,6 @@ struct K {
     static let todo = "Todo"
     
     static let buttonIconForFooter = "square.and.pencil"
-    
+    static let searchField = "searchField"
     static let taskCell = "TaskCell"
 }

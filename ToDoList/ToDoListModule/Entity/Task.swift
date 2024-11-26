@@ -17,7 +17,7 @@ struct ToDoResponse: Decodable {
 struct Task: Decodable {
     let id: Int
     let todo: String
-    let completed: Bool
+    var completed: Bool
     let userId: Int
 }
 

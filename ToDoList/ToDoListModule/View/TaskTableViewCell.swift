@@ -8,6 +8,8 @@
 import UIKit
 
 final class TaskTableViewCell: UITableViewCell {
+    weak var delegate: TaskTableViewCellDelegate?
+    
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let dateLabel = UILabel()
@@ -24,6 +26,7 @@ final class TaskTableViewCell: UITableViewCell {
         setupTitleLabel()
         setupDescriptionLabel()
         setupDateLabel()
+        addCheckmarkTapGesture()
     }
     
     private func setupCheckmark() {
@@ -89,14 +92,62 @@ final class TaskTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func addCheckmarkTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCheckmarkTap))
+        checkmark.addGestureRecognizer(tapGesture)
+        checkmark.isUserInteractionEnabled = true
+    }
+    
+    @objc private func handleCheckmarkTap() {
+        delegate?.didToggleTaskCompletion(at: self)
+    }
+    
     func configure(with task: Task) {
-        titleLabel.text = K.todo
+        let attributedString = NSAttributedString(
+            string: task.todo,
+            attributes: [
+                .strikethroughStyle: task.completed ? NSUnderlineStyle.single.rawValue : 0,
+                .foregroundColor: task.completed ? UIColor.lightGray : UIColor.white
+            ]
+        )
+        titleLabel.attributedText = attributedString
+        
         descriptionLabel.text = task.todo
-        checkmark.backgroundColor = task.completed ? .yellow : .clear
+        descriptionLabel.textColor = task.completed ? .lightGray : .white
+        //checkmark.backgroundColor = task.completed ? .yellow : .clear
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let formattedDate = dateFormatter.string(from: Date())
         dateLabel.text = formattedDate
+        
+        updateCheckmark(isCompleted: task.completed)
     }
+    
+    private func updateCheckmark(isCompleted: Bool) {
+        checkmark.layer.sublayers?.removeAll()
+        
+        if isCompleted {
+            let path = UIBezierPath()
+            path.move(to: CGPoint(x: 6, y: 12))
+            path.addLine(to: CGPoint(x: 11, y: 18))
+            path.addLine(to: CGPoint(x: 20, y: 8))
+
+            let checkmarkLayer = CAShapeLayer()
+            checkmarkLayer.path = path.cgPath
+            checkmarkLayer.strokeColor = UIColor.yellow.cgColor
+            checkmarkLayer.lineWidth = 1
+            checkmarkLayer.fillColor = UIColor.clear.cgColor
+            checkmarkLayer.lineCap = .round
+            checkmarkLayer.lineJoin = .round
+
+            checkmark.layer.addSublayer(checkmarkLayer)
+            checkmark.layer.borderWidth = 1
+            checkmark.layer.borderColor = UIColor.yellow.cgColor
+        }
+        else {
+            checkmark.layer.borderColor = UIColor.gray.cgColor
+        }
+    }
+
 }

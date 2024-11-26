@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A53798602CF60572001D5DA0 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537985F2CF60572001D5DA0 /* TaskTableViewCell.swift */; };
+		A53798622CF66265001D5DA0 /* TaskTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798612CF66265001D5DA0 /* TaskTableViewCellDelegate.swift */; };
 		A5571F032CF4A88100191210 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5571F022CF4A88100191210 /* AppDelegate.swift */; };
 		A5571F052CF4A88100191210 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5571F042CF4A88100191210 /* SceneDelegate.swift */; };
 		A5571F0D2CF4A88100191210 /* ToDoList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5571F0B2CF4A88100191210 /* ToDoList.xcdatamodeld */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		A537985F2CF60572001D5DA0 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		A53798612CF66265001D5DA0 /* TaskTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		A5571EFF2CF4A88100191210 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5571F022CF4A88100191210 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5571F042CF4A88100191210 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				A5571F3C2CF4AEF600191210 /* ToDoListViewController.swift */,
 				A5571F492CF4B1A000191210 /* ToDoListViewInputProtocol.swift */,
 				A537985F2CF60572001D5DA0 /* TaskTableViewCell.swift */,
+				A53798612CF66265001D5DA0 /* TaskTableViewCellDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				A5571F552CF4BA4000191210 /* Constants.swift in Sources */,
 				A5571F482CF4B0D100191210 /* ToDoListConfigurator.swift in Sources */,
 				A5571F052CF4A88100191210 /* SceneDelegate.swift in Sources */,
+				A53798622CF66265001D5DA0 /* TaskTableViewCellDelegate.swift in Sources */,
 				A53798602CF60572001D5DA0 /* TaskTableViewCell.swift in Sources */,
 				A5571F532CF4B9CF00191210 /* ToDoService.swift in Sources */,
 				A5571F3D2CF4AEF600191210 /* ToDoListViewController.swift in Sources */,
