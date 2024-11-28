@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        //let navigationController = UINavigationController(rootViewController: ToDoListConfigurator().configure())
-        window?.rootViewController = ToDoListConfigurator().configure()
+        let navigationController = UINavigationController(rootViewController: ToDoListConfigurator().configure())
+        window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
 

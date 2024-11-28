@@ -21,8 +21,17 @@ struct K {
     static let tasks = "Задачи"
     static let search = "Search"
     static let todo = "Todo"
+    static let back = "Назад"
     
-    static let buttonIconForFooter = "square.and.pencil"
+    static let squareAndPencil = "square.and.pencil"
+    static let trash = "trash"
+    static let squareAndArrowUp = "square.and.arrow.up"
+    
     static let searchField = "searchField"
     static let taskCell = "TaskCell"
+    
+    static let editAction = "Редактировать"
+    static let shareAction = "Поделиться"
+    static let deleteAction = "Удалить"
+    
 }

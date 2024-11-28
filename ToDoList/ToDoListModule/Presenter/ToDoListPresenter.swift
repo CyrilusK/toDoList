@@ -59,4 +59,8 @@ final class ToDoListPresenter: ToDoListOutputProtocol {
         }
         updateView()
     }
+    
+    func navigateToEditTask(_ task: Task) {
+        router?.presentTaskDetail(task)
+    }
 }

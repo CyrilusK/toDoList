@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		A53798602CF60572001D5DA0 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537985F2CF60572001D5DA0 /* TaskTableViewCell.swift */; };
 		A53798622CF66265001D5DA0 /* TaskTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798612CF66265001D5DA0 /* TaskTableViewCellDelegate.swift */; };
+		A53798692CF90DFE001D5DA0 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798682CF90DFE001D5DA0 /* EditTaskViewController.swift */; };
+		A537986B2CF912EC001D5DA0 /* EditTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537986A2CF912EC001D5DA0 /* EditTaskConfigurator.swift */; };
+		A537986E2CF9138B001D5DA0 /* EditTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537986D2CF9138B001D5DA0 /* EditTaskPresenter.swift */; };
+		A53798702CF91414001D5DA0 /* EditTaskInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537986F2CF91414001D5DA0 /* EditTaskInteractor.swift */; };
+		A53798722CF9181F001D5DA0 /* EditTaskOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798712CF9181F001D5DA0 /* EditTaskOutputProtocol.swift */; };
+		A53798742CF91868001D5DA0 /* EditTaskViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798732CF91868001D5DA0 /* EditTaskViewInputProtocol.swift */; };
 		A5571F032CF4A88100191210 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5571F022CF4A88100191210 /* AppDelegate.swift */; };
 		A5571F052CF4A88100191210 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5571F042CF4A88100191210 /* SceneDelegate.swift */; };
 		A5571F0D2CF4A88100191210 /* ToDoList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5571F0B2CF4A88100191210 /* ToDoList.xcdatamodeld */; };
@@ -51,6 +57,12 @@
 /* Begin PBXFileReference section */
 		A537985F2CF60572001D5DA0 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		A53798612CF66265001D5DA0 /* TaskTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		A53798682CF90DFE001D5DA0 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		A537986A2CF912EC001D5DA0 /* EditTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskConfigurator.swift; sourceTree = "<group>"; };
+		A537986D2CF9138B001D5DA0 /* EditTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskPresenter.swift; sourceTree = "<group>"; };
+		A537986F2CF91414001D5DA0 /* EditTaskInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskInteractor.swift; sourceTree = "<group>"; };
+		A53798712CF9181F001D5DA0 /* EditTaskOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskOutputProtocol.swift; sourceTree = "<group>"; };
+		A53798732CF91868001D5DA0 /* EditTaskViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewInputProtocol.swift; sourceTree = "<group>"; };
 		A5571EFF2CF4A88100191210 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5571F022CF4A88100191210 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5571F042CF4A88100191210 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +114,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A53798632CF8F8E1001D5DA0 /* EditTaskModule */ = {
+			isa = PBXGroup;
+			children = (
+				A53798672CF8F90A001D5DA0 /* Configurator */,
+				A53798662CF8F904001D5DA0 /* Presenter */,
+				A53798652CF8F8FC001D5DA0 /* Interactor */,
+				A53798642CF8F8EC001D5DA0 /* View */,
+			);
+			path = EditTaskModule;
+			sourceTree = "<group>";
+		};
+		A53798642CF8F8EC001D5DA0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A53798682CF90DFE001D5DA0 /* EditTaskViewController.swift */,
+				A53798732CF91868001D5DA0 /* EditTaskViewInputProtocol.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A53798652CF8F8FC001D5DA0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				A537986F2CF91414001D5DA0 /* EditTaskInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A53798662CF8F904001D5DA0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A537986D2CF9138B001D5DA0 /* EditTaskPresenter.swift */,
+				A53798712CF9181F001D5DA0 /* EditTaskOutputProtocol.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A53798672CF8F90A001D5DA0 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				A537986A2CF912EC001D5DA0 /* EditTaskConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
 		A5571EF62CF4A88100191210 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				A5571F512CF4B8E300191210 /* Managers */,
+				A53798632CF8F8E1001D5DA0 /* EditTaskModule */,
 				A5571F352CF4AD8C00191210 /* ToDoListModule */,
 				A5571F022CF4A88100191210 /* AppDelegate.swift */,
 				A5571F042CF4A88100191210 /* SceneDelegate.swift */,
@@ -361,11 +419,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5571F4E2CF4B4C200191210 /* ToDoListOutputProtocol.swift in Sources */,
+				A53798742CF91868001D5DA0 /* EditTaskViewInputProtocol.swift in Sources */,
+				A53798722CF9181F001D5DA0 /* EditTaskOutputProtocol.swift in Sources */,
+				A537986B2CF912EC001D5DA0 /* EditTaskConfigurator.swift in Sources */,
+				A53798692CF90DFE001D5DA0 /* EditTaskViewController.swift in Sources */,
 				A5571F442CF4B02900191210 /* Task.swift in Sources */,
 				A5571F412CF4AF9B00191210 /* ToDoListPresenter.swift in Sources */,
 				A5571F4C2CF4B41C00191210 /* ToDoListInteractorInputProtocol.swift in Sources */,
 				A5571F032CF4A88100191210 /* AppDelegate.swift in Sources */,
 				A5571F552CF4BA4000191210 /* Constants.swift in Sources */,
+				A53798702CF91414001D5DA0 /* EditTaskInteractor.swift in Sources */,
 				A5571F482CF4B0D100191210 /* ToDoListConfigurator.swift in Sources */,
 				A5571F052CF4A88100191210 /* SceneDelegate.swift in Sources */,
 				A53798622CF66265001D5DA0 /* TaskTableViewCellDelegate.swift in Sources */,
@@ -373,6 +436,7 @@
 				A5571F532CF4B9CF00191210 /* ToDoService.swift in Sources */,
 				A5571F3D2CF4AEF600191210 /* ToDoListViewController.swift in Sources */,
 				A5571F3F2CF4AF3900191210 /* ToDoListInteractor.swift in Sources */,
+				A537986E2CF9138B001D5DA0 /* EditTaskPresenter.swift in Sources */,
 				A5571F4A2CF4B1A000191210 /* ToDoListViewInputProtocol.swift in Sources */,
 				A5571F502CF4B54200191210 /* ToDoListRouterInputProtocol.swift in Sources */,
 				A5571F0D2CF4A88100191210 /* ToDoList.xcdatamodeld in Sources */,
@@ -550,6 +614,7 @@
 				INFOPLIST_FILE = ToDoList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -577,6 +642,7 @@
 				INFOPLIST_FILE = ToDoList/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

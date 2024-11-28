@@ -29,12 +29,12 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
     }
     
     func setupUI() {
-//        view.backgroundColor = .black
-//        title = K.tasks
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-//        navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
-        setupTitleLabel()
+        view.backgroundColor = .black
+        title = K.tasks
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
+        //setupTitleLabel()
         setupSearchBar()
         setupFooterView()
         setupTableView()
@@ -74,7 +74,7 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
         view.addSubview(searchBar)
         
         NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
         ])
@@ -138,7 +138,7 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
     }
     
     private func setupButtonInsideFooter() {
-        buttonIndiseFooter.setImage(UIImage(systemName: K.buttonIconForFooter,
+        buttonIndiseFooter.setImage(UIImage(systemName: K.squareAndPencil,
         withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         buttonIndiseFooter.tintColor = .yellow
         
@@ -177,6 +177,26 @@ extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.delegate = self
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
+            let editAction = UIAction(title: K.editAction, image: UIImage(systemName: K.squareAndPencil)) { action in
+                self.output?.navigateToEditTask(self.tasks[indexPath.row])
+            }
+            let shareAction = UIAction(title: K.shareAction, image: UIImage(systemName: K.squareAndArrowUp)) { action in
+                
+            }
+            let deleteAction = UIAction(title: K.deleteAction, image: UIImage(systemName: K.trash), attributes: .destructive) { action in
+                
+            }
+            return UIMenu(title: "", children: [editAction, shareAction, deleteAction])
+        })
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        output?.navigateToEditTask(tasks[indexPath.row])
+    }
 }
 
 extension ToDoListViewController: TaskTableViewCellDelegate {
@@ -194,7 +214,3 @@ extension ToDoListViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
 }
-
-
-
-
