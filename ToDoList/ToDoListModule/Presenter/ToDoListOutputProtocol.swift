@@ -11,4 +11,6 @@ protocol ToDoListOutputProtocol: AnyObject {
     func viewDidLoad()
     func didFetchTasks(_ tasks: [Task])
     func didFailToFetchTasks(_ error: Error)
+    func didSearchTextChange(_ text: String)
+    func toggleTaskCompletion(at index: Int)
 }

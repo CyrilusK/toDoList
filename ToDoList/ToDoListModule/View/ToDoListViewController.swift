@@ -10,16 +10,14 @@ import UIKit
 final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol {
     var output: ToDoListOutputProtocol?
     
-    private var tasks: [Task] = []
-    private var filteredTasks: [Task] = []
-    private var isSearchActive: Bool = false
-    
     private let searchBar = UISearchBar()
     private let tableView = UITableView()
     private let footerView = UIView()
     private let buttonIndiseFooter = UIButton()
     private let labelInsideFooter = UILabel()
     private let titleLabel = UILabel()
+    
+    private var tasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,15 +150,10 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
         ])
     }
     
-    private func updateLabelInsideFooter() {
-        labelInsideFooter.text = "\(tasks.count) Задач"
-    }
-    
-    func showTasks(_ tasks: [Task]) {
+    func showTasks(_ tasks: [Task], totalCount: Int) {
         self.tasks = tasks
-        filteredTasks = tasks
         tableView.reloadData()
-        updateLabelInsideFooter()
+        labelInsideFooter.text = "\(totalCount) Задач"
     }
     
     func showError(_ message: String) {
@@ -174,12 +167,12 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
 
 extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearchActive ? filteredTasks.count : tasks.count
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.taskCell, for: indexPath) as! TaskTableViewCell
-        let task = isSearchActive ? filteredTasks[indexPath.row] : tasks[indexPath.row]
+        let task = tasks[indexPath.row]
         cell.configure(with: task)
         cell.delegate = self
         return cell
@@ -189,28 +182,15 @@ extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
 extension ToDoListViewController: TaskTableViewCellDelegate {
     func didToggleTaskCompletion(at cell: TaskTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        
-        if isSearchActive {
-            let originalIndex = tasks.firstIndex { $0.id == filteredTasks[indexPath.row].id }
-            guard let originalIndex = originalIndex else { return }
-            tasks[originalIndex].completed.toggle()
-            filteredTasks[indexPath.row].completed.toggle()
-        } else {
-            tasks[indexPath.row].completed.toggle()
-        }
+        tasks[indexPath.row].completed.toggle()
         tableView.reloadRows(at: [indexPath], with: .automatic)
+        output?.toggleTaskCompletion(at: indexPath.row)
     }
 }
 
 extension ToDoListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            isSearchActive = false
-            filteredTasks = tasks
-        } else {
-            isSearchActive = true
-            filteredTasks = tasks.filter { $0.todo.lowercased().contains(searchText.lowercased()) }
-        }
+        output?.didSearchTextChange(searchText)
         tableView.reloadData()
     }
 }

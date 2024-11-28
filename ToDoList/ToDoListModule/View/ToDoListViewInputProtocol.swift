@@ -9,6 +9,7 @@ import UIKit
 
 protocol ToDoListViewInputProtocol: AnyObject {
     func setupUI()
-    func showTasks(_ tasks: [Task])
+    func showTasks(_ tasks: [Task], totalCount: Int)
     func showError(_ message: String)
+    
 }

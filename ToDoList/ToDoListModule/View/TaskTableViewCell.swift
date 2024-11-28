@@ -114,7 +114,6 @@ final class TaskTableViewCell: UITableViewCell {
         
         descriptionLabel.text = task.todo
         descriptionLabel.textColor = task.completed ? .lightGray : .white
-        //checkmark.backgroundColor = task.completed ? .yellow : .clear
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -149,5 +148,4 @@ final class TaskTableViewCell: UITableViewCell {
             checkmark.layer.borderColor = UIColor.gray.cgColor
         }
     }
-
 }
