@@ -8,5 +8,5 @@
 import UIKit
 
 protocol ToDoListRouterInputProtocol {
-    func presentTaskDetail(_ task: Task)
+    func presentTaskDetail(_ task: Task, _ delegate: EditTaskDelegate)
 }

@@ -9,4 +9,5 @@ import UIKit
 
 protocol EditTaskOutputProtocol {
     func viewDidLoad()
+    func didFinishEditingTask(_ title: String, _ desc: String, _ dateString: String)
 }

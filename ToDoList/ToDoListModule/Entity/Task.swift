@@ -16,8 +16,10 @@ struct ToDoResponse: Decodable {
 
 struct Task: Decodable {
     let id: Int
-    let todo: String
+    var todo: String
+    var desc: String?
     var completed: Bool
     let userId: Int
+    var date: Date? = Date()
 }
 

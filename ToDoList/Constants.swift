@@ -22,10 +22,13 @@ struct K {
     static let search = "Search"
     static let todo = "Todo"
     static let back = "Назад"
+    static let title = "Заголовок"
+    static let desc = "Описание"
     
     static let squareAndPencil = "square.and.pencil"
     static let trash = "trash"
     static let squareAndArrowUp = "square.and.arrow.up"
+    static let dateForamt = "dd/MM/yyyy"
     
     static let searchField = "searchField"
     static let taskCell = "TaskCell"

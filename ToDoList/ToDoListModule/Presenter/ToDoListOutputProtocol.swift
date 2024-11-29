@@ -14,4 +14,6 @@ protocol ToDoListOutputProtocol: AnyObject {
     func didSearchTextChange(_ text: String)
     func toggleTaskCompletion(at index: Int)
     func navigateToEditTask(_ task: Task)
+    func deleteTask(_ task: Task)
+    func navigateToCreateTask()
 }

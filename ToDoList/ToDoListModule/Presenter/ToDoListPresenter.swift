@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ToDoListPresenter: ToDoListOutputProtocol {
+final class ToDoListPresenter: ToDoListOutputProtocol, EditTaskDelegate {
     weak var view: ToDoListViewInputProtocol?
     var interactor: ToDoListInteractorInputProtocol?
     var router: ToDoListRouterInputProtocol?
@@ -61,6 +61,33 @@ final class ToDoListPresenter: ToDoListOutputProtocol {
     }
     
     func navigateToEditTask(_ task: Task) {
-        router?.presentTaskDetail(task)
+        router?.presentTaskDetail(task, self)
+    }
+    
+    func navigateToCreateTask() {
+        let id = Int(UUID().uuidString.prefix(8), radix: 16) ?? 0
+        print(id)
+        let newTask = Task(id: id, todo: K.title, desc: K.desc, completed: false, userId: id)
+        tasks.insert(newTask, at: 0)
+        router?.presentTaskDetail(newTask, self)
+    }
+    
+    func didEditTask(_ task: Task) {
+        guard let index = tasks.firstIndex(where: { $0.id == task.id }) else { return }
+        tasks[index] = task
+        updateView()
+    }
+    
+    func deleteTask(_ task: Task) {
+        print("before delete tasks \(tasks.count)")
+        print("before delete filteredTasks \(filteredTasks.count)")
+        guard let index = tasks.firstIndex(where: { $0.id == task.id }) else { return }
+        tasks.remove(at: index)
+        print("after delete tasks \(tasks.count)")
+        if isSearchActive {
+            guard let filteredIndex = filteredTasks.firstIndex(where: { $0.id == task.id }) else { return }
+            filteredTasks.remove(at: filteredIndex)
+            print("after delete filteredTasks \(filteredTasks.count)")
+        }
     }
 }

@@ -19,6 +19,14 @@ final class EditTaskViewController: UIViewController, EditTaskViewInputProtocol 
         output?.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let title = titleTextView.text,
+              let desc = descriptionTextView.text,
+              let dateString = dateTextField.text else { return }
+        output?.didFinishEditingTask(title, desc, dateString)
+    }
+    
     func setupWithTask(_ task: Task) {
         view.backgroundColor = .black
         navigationItem.largeTitleDisplayMode = .never
@@ -81,6 +89,6 @@ final class EditTaskViewController: UIViewController, EditTaskViewInputProtocol 
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let formattedDate = dateFormatter.string(from: Date())
         dateTextField.text = formattedDate
-        descriptionTextView.text = task.todo
+        descriptionTextView.text = task.desc
     }
 }

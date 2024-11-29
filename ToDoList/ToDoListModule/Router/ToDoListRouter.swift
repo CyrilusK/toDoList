@@ -10,8 +10,8 @@ import UIKit
 final class ToDoListRouter: ToDoListRouterInputProtocol {
     weak var entry: UIViewController?
     
-    func presentTaskDetail(_ task: Task) {
-        let editVC = EditTaskConfigurator().configure(task: task)
+    func presentTaskDetail(_ task: Task, _ delegate: EditTaskDelegate) {
+        let editVC = EditTaskConfigurator().configure(task: task, delegate: delegate)
         entry?.navigationItem.backButtonTitle = K.back
         entry?.navigationController?.pushViewController(editVC, animated: true)
     }

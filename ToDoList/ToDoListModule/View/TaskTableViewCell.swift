@@ -112,12 +112,12 @@ final class TaskTableViewCell: UITableViewCell {
         )
         titleLabel.attributedText = attributedString
         
-        descriptionLabel.text = task.todo
+        descriptionLabel.text = task.desc
         descriptionLabel.textColor = task.completed ? .lightGray : .white
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let formattedDate = dateFormatter.string(from: Date())
+        dateFormatter.dateFormat = K.dateForamt
+        let formattedDate = dateFormatter.string(from: task.date ?? Date())
         dateLabel.text = formattedDate
         
         updateCheckmark(isCompleted: task.completed)

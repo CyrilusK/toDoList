@@ -30,6 +30,7 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
     
     func setupUI() {
         view.backgroundColor = .black
+        navigationController?.navigationBar.barStyle = .black
         title = K.tasks
         navigationController?.navigationBar.prefersLargeTitles = true
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -148,6 +149,7 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
             buttonIndiseFooter.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
             buttonIndiseFooter.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -25)
         ])
+        buttonIndiseFooter.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
     }
     
     func showTasks(_ tasks: [Task], totalCount: Int) {
@@ -162,6 +164,10 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
         present(alert, animated: true)
         print(message)
     }
+    
+    @objc private func didTapAddButton() {
+        output?.navigateToCreateTask()
+    }
 }
 
 
@@ -175,27 +181,42 @@ extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
         let task = tasks[indexPath.row]
         cell.configure(with: task)
         cell.delegate = self
+        cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let task = tasks[indexPath.row]
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
             let editAction = UIAction(title: K.editAction, image: UIImage(systemName: K.squareAndPencil)) { action in
-                self.output?.navigateToEditTask(self.tasks[indexPath.row])
+                self.output?.navigateToEditTask(task)
             }
             let shareAction = UIAction(title: K.shareAction, image: UIImage(systemName: K.squareAndArrowUp)) { action in
-                
             }
             let deleteAction = UIAction(title: K.deleteAction, image: UIImage(systemName: K.trash), attributes: .destructive) { action in
-                
+                self.output?.deleteTask(task)
+                self.tasks.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             return UIMenu(title: "", children: [editAction, shareAction, deleteAction])
         })
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
         output?.navigateToEditTask(tasks[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: K.deleteAction) { [weak self] _, _, complete in
+            guard let self = self else { return }
+            output?.deleteTask(tasks[indexPath.row])
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            complete(true)
+        }
+        deleteAction.backgroundColor = .red
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }
 
