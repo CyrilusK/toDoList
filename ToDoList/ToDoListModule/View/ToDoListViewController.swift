@@ -194,9 +194,11 @@ extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
             let shareAction = UIAction(title: K.shareAction, image: UIImage(systemName: K.squareAndArrowUp)) { action in
             }
             let deleteAction = UIAction(title: K.deleteAction, image: UIImage(systemName: K.trash), attributes: .destructive) { action in
-                self.output?.deleteTask(task)
                 self.tasks.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+                    self.output?.deleteTask(task)
+                })
             }
             return UIMenu(title: "", children: [editAction, shareAction, deleteAction])
         })
@@ -210,10 +212,12 @@ extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: K.deleteAction) { [weak self] _, _, complete in
             guard let self = self else { return }
-            output?.deleteTask(tasks[indexPath.row])
+            let taskForDelete = tasks[indexPath.row]
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            complete(true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+                self.output?.deleteTask(taskForDelete)
+            })
         }
         deleteAction.backgroundColor = .red
         return UISwipeActionsConfiguration(actions: [deleteAction])
@@ -232,6 +236,5 @@ extension ToDoListViewController: TaskTableViewCellDelegate {
 extension ToDoListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         output?.didSearchTextChange(searchText)
-        tableView.reloadData()
     }
 }
