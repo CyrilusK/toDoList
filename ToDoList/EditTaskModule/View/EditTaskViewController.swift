@@ -86,7 +86,7 @@ final class EditTaskViewController: UIViewController, EditTaskViewInputProtocol 
     private func loadTaskData(_ task: Task) {
         titleTextView.text = task.todo
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = K.dateForamt
         let formattedDate = dateFormatter.string(from: Date())
         dateTextField.text = formattedDate
         descriptionTextView.text = task.desc

@@ -8,10 +8,10 @@
 import UIKit
 
 final class ToDoListConfigurator {
-    func configure() -> UIViewController {
+    func configure(coreDataManager: CoreDataManager) -> UIViewController {
         let view = ToDoListViewController()
         let presenter = ToDoListPresenter()
-        let interactor = ToDoListInteractor()
+        let interactor = ToDoListInteractor(coreDataManager: coreDataManager)
         let router = ToDoListRouter()
         
         view.output = presenter

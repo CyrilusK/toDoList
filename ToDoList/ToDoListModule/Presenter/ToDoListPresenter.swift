@@ -22,11 +22,12 @@ final class ToDoListPresenter: ToDoListOutputProtocol, EditTaskDelegate {
     
     func viewDidLoad() {
         view?.setupUI()
+        interactor?.loadTasksFromAPI()
         interactor?.fetchTasks()
     }
     
     func didFetchTasks(_ tasks: [Task]) {
-        self.tasks = tasks
+        self.tasks = tasks.reversed()
     }
     
     func didFailToFetchTasks(_ error: Error) {
@@ -57,6 +58,7 @@ final class ToDoListPresenter: ToDoListOutputProtocol, EditTaskDelegate {
         } else {
             tasks[index].completed.toggle()
         }
+        interactor?.updateTask(tasks[index])
         updateView()
     }
     
@@ -68,12 +70,14 @@ final class ToDoListPresenter: ToDoListOutputProtocol, EditTaskDelegate {
         let id = Int(UUID().uuidString.prefix(8), radix: 16) ?? 0
         let newTask = Task(id: id, todo: K.title, desc: K.desc, completed: false, userId: id)
         tasks.insert(newTask, at: 0)
+        interactor?.createTask(newTask)
         router?.presentTaskDetail(newTask, self)
     }
     
     func didEditTask(_ task: Task) {
         guard let index = tasks.firstIndex(where: { $0.id == task.id }) else { return }
         tasks[index] = task
+        interactor?.updateTask(tasks[index])
         updateView()
     }
     
@@ -85,5 +89,6 @@ final class ToDoListPresenter: ToDoListOutputProtocol, EditTaskDelegate {
             filteredTasks.remove(at: filteredIndex)
             updateView()
         }
+        interactor?.deleteTask(task)
     }
 }

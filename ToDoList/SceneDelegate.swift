@@ -18,7 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let navigationController = UINavigationController(rootViewController: ToDoListConfigurator().configure())
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let navigationController = UINavigationController(rootViewController: ToDoListConfigurator().configure(coreDataManager: CoreDataManager(context: appDelegate.persistentContainer.viewContext)))
         window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
@@ -53,7 +55,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
-
 }
 

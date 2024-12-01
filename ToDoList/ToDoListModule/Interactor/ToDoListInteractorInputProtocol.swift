@@ -9,4 +9,8 @@ import UIKit
 
 protocol ToDoListInteractorInputProtocol: AnyObject {
     func fetchTasks()
+    func loadTasksFromAPI()
+    func createTask(_ task: Task)
+    func updateTask(_ task: Task)
+    func deleteTask(_ task: Task)
 }

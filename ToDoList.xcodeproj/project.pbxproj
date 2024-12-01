@@ -16,6 +16,8 @@
 		A53798722CF9181F001D5DA0 /* EditTaskOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798712CF9181F001D5DA0 /* EditTaskOutputProtocol.swift */; };
 		A53798742CF91868001D5DA0 /* EditTaskViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798732CF91868001D5DA0 /* EditTaskViewInputProtocol.swift */; };
 		A53798762CFA5D4B001D5DA0 /* EditTaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798752CFA5D4B001D5DA0 /* EditTaskDelegate.swift */; };
+		A53798842CFBB877001D5DA0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798832CFBB877001D5DA0 /* CoreDataManager.swift */; };
+		A53798882CFBD58A001D5DA0 /* TaskEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798862CFBD58A001D5DA0 /* TaskEntity+CoreDataProperties.swift */; };
 		A5571F032CF4A88100191210 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5571F022CF4A88100191210 /* AppDelegate.swift */; };
 		A5571F052CF4A88100191210 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5571F042CF4A88100191210 /* SceneDelegate.swift */; };
 		A5571F0D2CF4A88100191210 /* ToDoList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A5571F0B2CF4A88100191210 /* ToDoList.xcdatamodeld */; };
@@ -65,6 +67,8 @@
 		A53798712CF9181F001D5DA0 /* EditTaskOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskOutputProtocol.swift; sourceTree = "<group>"; };
 		A53798732CF91868001D5DA0 /* EditTaskViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewInputProtocol.swift; sourceTree = "<group>"; };
 		A53798752CFA5D4B001D5DA0 /* EditTaskDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskDelegate.swift; sourceTree = "<group>"; };
+		A53798832CFBB877001D5DA0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A53798862CFBD58A001D5DA0 /* TaskEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TaskEntity+CoreDataProperties.swift"; path = "ToDoList/TaskEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A5571EFF2CF4A88100191210 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5571F022CF4A88100191210 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5571F042CF4A88100191210 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 		A5571EF62CF4A88100191210 = {
 			isa = PBXGroup;
 			children = (
+				A53798862CFBD58A001D5DA0 /* TaskEntity+CoreDataProperties.swift */,
 				A5571F012CF4A88100191210 /* ToDoList */,
 				A5571F1B2CF4A88400191210 /* ToDoListTests */,
 				A5571F252CF4A88400191210 /* ToDoListUITests */,
@@ -287,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				A5571F522CF4B9CF00191210 /* ToDoService.swift */,
+				A53798832CFBB877001D5DA0 /* CoreDataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 				A53798722CF9181F001D5DA0 /* EditTaskOutputProtocol.swift in Sources */,
 				A537986B2CF912EC001D5DA0 /* EditTaskConfigurator.swift in Sources */,
 				A53798692CF90DFE001D5DA0 /* EditTaskViewController.swift in Sources */,
+				A53798882CFBD58A001D5DA0 /* TaskEntity+CoreDataProperties.swift in Sources */,
 				A5571F442CF4B02900191210 /* Task.swift in Sources */,
 				A5571F412CF4AF9B00191210 /* ToDoListPresenter.swift in Sources */,
 				A5571F4C2CF4B41C00191210 /* ToDoListInteractorInputProtocol.swift in Sources */,
@@ -439,6 +446,7 @@
 				A5571F532CF4B9CF00191210 /* ToDoService.swift in Sources */,
 				A5571F3D2CF4AEF600191210 /* ToDoListViewController.swift in Sources */,
 				A5571F3F2CF4AF3900191210 /* ToDoListInteractor.swift in Sources */,
+				A53798842CFBB877001D5DA0 /* CoreDataManager.swift in Sources */,
 				A537986E2CF9138B001D5DA0 /* EditTaskPresenter.swift in Sources */,
 				A5571F4A2CF4B1A000191210 /* ToDoListViewInputProtocol.swift in Sources */,
 				A5571F502CF4B54200191210 /* ToDoListRouterInputProtocol.swift in Sources */,

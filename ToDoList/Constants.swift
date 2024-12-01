@@ -32,6 +32,10 @@ struct K {
     
     static let searchField = "searchField"
     static let taskCell = "TaskCell"
+    static let taskEntity = "TaskEntity"
+    static let labelForCoreData = "com.todolist.coredata"
+    static let hasLoadedTasks = "HasLoadedTasks"
+    static let toDoList = "ToDoList"
     
     static let editAction = "Редактировать"
     static let shareAction = "Поделиться"
