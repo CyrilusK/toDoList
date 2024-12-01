@@ -23,7 +23,7 @@ final class EditTaskPresenter: EditTaskOutputProtocol {
     
     func didFinishEditingTask(_ title: String, _ desc: String, _ dateString: String) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = K.dateForamt
+        dateFormatter.dateFormat = K.dateFormat
         guard let date = dateFormatter.date(from: dateString) else { return }
         
         task.todo = title

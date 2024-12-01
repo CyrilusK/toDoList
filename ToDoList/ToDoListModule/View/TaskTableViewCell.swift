@@ -116,7 +116,7 @@ final class TaskTableViewCell: UITableViewCell {
         descriptionLabel.textColor = task.completed ? .lightGray : .white
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = K.dateForamt
+        dateFormatter.dateFormat = K.dateFormat
         let formattedDate = dateFormatter.string(from: task.date ?? Date())
         dateLabel.text = formattedDate
         

@@ -15,4 +15,11 @@ final class ToDoListRouter: ToDoListRouterInputProtocol {
         entry?.navigationItem.backButtonTitle = K.back
         entry?.navigationController?.pushViewController(editVC, animated: true)
     }
+
+    func presentShareSheet(items: [String]) {
+        let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        activityViewController.popoverPresentationController?.sourceView = entry?.view
+        entry?.present(activityViewController, animated: true, completion: nil)
+    }
 }

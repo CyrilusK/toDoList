@@ -28,7 +28,7 @@ struct K {
     static let squareAndPencil = "square.and.pencil"
     static let trash = "trash"
     static let squareAndArrowUp = "square.and.arrow.up"
-    static let dateForamt = "dd/MM/yyyy"
+    static let dateFormat = "dd/MM/yyyy"
     
     static let searchField = "searchField"
     static let taskCell = "TaskCell"

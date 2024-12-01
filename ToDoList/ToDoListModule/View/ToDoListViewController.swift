@@ -95,8 +95,8 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: footerView.topAnchor),
         ])
     }
@@ -192,6 +192,7 @@ extension ToDoListViewController: UITableViewDataSource, UITableViewDelegate {
                 self.output?.navigateToEditTask(task)
             }
             let shareAction = UIAction(title: K.shareAction, image: UIImage(systemName: K.squareAndArrowUp)) { action in
+                self.output?.navigateToShareSheet(task)
             }
             let deleteAction = UIAction(title: K.deleteAction, image: UIImage(systemName: K.trash), attributes: .destructive) { action in
                 self.tasks.remove(at: indexPath.row)

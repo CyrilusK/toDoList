@@ -12,7 +12,6 @@
 		A53798692CF90DFE001D5DA0 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798682CF90DFE001D5DA0 /* EditTaskViewController.swift */; };
 		A537986B2CF912EC001D5DA0 /* EditTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537986A2CF912EC001D5DA0 /* EditTaskConfigurator.swift */; };
 		A537986E2CF9138B001D5DA0 /* EditTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537986D2CF9138B001D5DA0 /* EditTaskPresenter.swift */; };
-		A53798702CF91414001D5DA0 /* EditTaskInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A537986F2CF91414001D5DA0 /* EditTaskInteractor.swift */; };
 		A53798722CF9181F001D5DA0 /* EditTaskOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798712CF9181F001D5DA0 /* EditTaskOutputProtocol.swift */; };
 		A53798742CF91868001D5DA0 /* EditTaskViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798732CF91868001D5DA0 /* EditTaskViewInputProtocol.swift */; };
 		A53798762CFA5D4B001D5DA0 /* EditTaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53798752CFA5D4B001D5DA0 /* EditTaskDelegate.swift */; };
@@ -63,7 +62,6 @@
 		A53798682CF90DFE001D5DA0 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 		A537986A2CF912EC001D5DA0 /* EditTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskConfigurator.swift; sourceTree = "<group>"; };
 		A537986D2CF9138B001D5DA0 /* EditTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskPresenter.swift; sourceTree = "<group>"; };
-		A537986F2CF91414001D5DA0 /* EditTaskInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskInteractor.swift; sourceTree = "<group>"; };
 		A53798712CF9181F001D5DA0 /* EditTaskOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskOutputProtocol.swift; sourceTree = "<group>"; };
 		A53798732CF91868001D5DA0 /* EditTaskViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewInputProtocol.swift; sourceTree = "<group>"; };
 		A53798752CFA5D4B001D5DA0 /* EditTaskDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 				A53798752CFA5D4B001D5DA0 /* EditTaskDelegate.swift */,
 				A53798672CF8F90A001D5DA0 /* Configurator */,
 				A53798662CF8F904001D5DA0 /* Presenter */,
-				A53798652CF8F8FC001D5DA0 /* Interactor */,
 				A53798642CF8F8EC001D5DA0 /* View */,
 			);
 			path = EditTaskModule;
@@ -139,14 +136,6 @@
 				A53798732CF91868001D5DA0 /* EditTaskViewInputProtocol.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A53798652CF8F8FC001D5DA0 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				A537986F2CF91414001D5DA0 /* EditTaskInteractor.swift */,
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		A53798662CF8F904001D5DA0 /* Presenter */ = {
@@ -438,7 +427,6 @@
 				A5571F4C2CF4B41C00191210 /* ToDoListInteractorInputProtocol.swift in Sources */,
 				A5571F032CF4A88100191210 /* AppDelegate.swift in Sources */,
 				A5571F552CF4BA4000191210 /* Constants.swift in Sources */,
-				A53798702CF91414001D5DA0 /* EditTaskInteractor.swift in Sources */,
 				A5571F482CF4B0D100191210 /* ToDoListConfigurator.swift in Sources */,
 				A5571F052CF4A88100191210 /* SceneDelegate.swift in Sources */,
 				A53798622CF66265001D5DA0 /* TaskTableViewCellDelegate.swift in Sources */,
@@ -550,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -604,7 +592,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -627,8 +615,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -636,9 +625,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kkg.ToDoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -655,8 +647,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -664,9 +657,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kkg.ToDoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -16,4 +16,5 @@ protocol ToDoListOutputProtocol: AnyObject {
     func navigateToEditTask(_ task: Task)
     func deleteTask(_ task: Task)
     func navigateToCreateTask()
+    func navigateToShareSheet(_ task: Task)
 }

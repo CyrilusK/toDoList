@@ -9,4 +9,5 @@ import UIKit
 
 protocol ToDoListRouterInputProtocol {
     func presentTaskDetail(_ task: Task, _ delegate: EditTaskDelegate)
+    func presentShareSheet(items: [String])
 }

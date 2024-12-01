@@ -49,8 +49,8 @@ final class EditTaskViewController: UIViewController, EditTaskViewInputProtocol 
         
         NSLayoutConstraint.activate([
             titleTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            titleTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            titleTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            titleTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            titleTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
         ])
     }
     
@@ -62,8 +62,8 @@ final class EditTaskViewController: UIViewController, EditTaskViewInputProtocol 
         
         NSLayoutConstraint.activate([
             dateTextField.topAnchor.constraint(equalTo: titleTextView.bottomAnchor, constant: 5),
-            dateTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            dateTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            dateTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            dateTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
         ])
     }
     
@@ -86,8 +86,8 @@ final class EditTaskViewController: UIViewController, EditTaskViewInputProtocol 
     private func loadTaskData(_ task: Task) {
         titleTextView.text = task.todo
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = K.dateForamt
-        let formattedDate = dateFormatter.string(from: Date())
+        dateFormatter.dateFormat = K.dateFormat
+        let formattedDate = dateFormatter.string(from: task.date ?? Date())
         dateTextField.text = formattedDate
         descriptionTextView.text = task.desc
     }

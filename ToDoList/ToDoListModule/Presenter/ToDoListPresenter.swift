@@ -91,4 +91,9 @@ final class ToDoListPresenter: ToDoListOutputProtocol, EditTaskDelegate {
         }
         interactor?.deleteTask(task)
     }
+    
+    func navigateToShareSheet(_ task: Task) {
+        let itemsToShare = [task.todo]
+        router?.presentShareSheet(items: itemsToShare)
+    }
 }
