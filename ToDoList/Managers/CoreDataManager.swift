@@ -8,8 +8,15 @@
 import UIKit
 import CoreData
 
+protocol CoreDataManagerProtocol {
+    func createTask(_ task: Task)
+    func fetchTasks() -> [Task]
+    func updateTask(_ task: Task)
+    func deleteTask(_ task: Task)
+}
+
 // MARK: - CRUD
-final class CoreDataManager {
+final class CoreDataManager: CoreDataManagerProtocol {
     private let context: NSManagedObjectContext
     
     init(context: NSManagedObjectContext) {

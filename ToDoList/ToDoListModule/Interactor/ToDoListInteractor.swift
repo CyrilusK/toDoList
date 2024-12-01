@@ -9,10 +9,10 @@ import UIKit
 
 final class ToDoListInteractor: ToDoListInteractorInputProtocol {
     weak var output: ToDoListOutputProtocol?
-    private let storageManager: CoreDataManager
+    private let storageManager: CoreDataManagerProtocol
     private let backgroundQueue = DispatchQueue(label: K.labelForCoreData, qos: .userInitiated)
     
-    init(coreDataManager: CoreDataManager) {
+    init(coreDataManager: CoreDataManagerProtocol) {
         storageManager = coreDataManager
     }
     
@@ -61,7 +61,6 @@ final class ToDoListInteractor: ToDoListInteractorInputProtocol {
     
     func deleteTask(_ task: Task) {
         backgroundQueue.async { [weak self] in
-            print("Will delete task: \(task)")
             self?.storageManager.deleteTask(task)
         }
     }
