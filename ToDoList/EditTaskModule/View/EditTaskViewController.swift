@@ -31,6 +31,10 @@ final class EditTaskViewController: UIViewController, EditTaskViewInputProtocol 
         view.backgroundColor = .black
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.tintColor = .yellow
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        navigationController?.navigationBar.addGestureRecognizer(tapGesture)
+        
         setupTitleTextField()
         setupDateTextField()
         setupDescriptionTextView()
@@ -90,5 +94,9 @@ final class EditTaskViewController: UIViewController, EditTaskViewInputProtocol 
         let formattedDate = dateFormatter.string(from: task.date ?? Date())
         dateTextField.text = formattedDate
         descriptionTextView.text = task.desc
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

@@ -80,6 +80,9 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
         ])
         searchBar.delegate = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        navigationController?.navigationBar.addGestureRecognizer(tapGesture)
     }
     
     private func setupTableView() {
@@ -168,6 +171,10 @@ final class ToDoListViewController: UIViewController, ToDoListViewInputProtocol 
     @objc private func didTapAddButton() {
         output?.navigateToCreateTask()
     }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 
@@ -238,4 +245,9 @@ extension ToDoListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         output?.didSearchTextChange(searchText)
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
 }
